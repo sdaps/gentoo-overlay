@@ -1,0 +1,16 @@
+To use this overlay you first need to configure layman. Once
+you have don this, copy the included overlay.xml file over
+to /etc/layman/overlays/sdaps.xml so that layman knows about
+this overlay.
+
+After this you can active the "sdaps" repository using
+ $ layman -a sdaps
+
+Then you can update the repository using
+ $ layman -s sdaps
+
+Once the above steps are done, it is possible to install
+SDAPS using the normal gentoo method:
+ $ emerge sdaps
+
+Have fun!
