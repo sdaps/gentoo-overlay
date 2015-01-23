@@ -1,10 +1,8 @@
 EAPI=5
-PYTHON_COMPAT=( python2_7 )
+PYTHON_COMPAT=( python2_7 ) #test pypy
+DISTUTILS_SINGLE_IMPL=1
 
 inherit distutils-r1
-
-PYTHON_DEPEND="2:2.7"
-RESTRICT_PYTHON_ABIS="3.*"
 
 DESCRIPTION="Python PDFTools"
 HOMEPAGE="http://www.boddie.org.uk/david/Projects/Python/pdftools/index.html"
@@ -14,11 +12,11 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="amd64 x86"
 
-pkg_setup() {
-	python_set_active_version 2
-}
+RDEPEND="${PYTHON_DEPS}"
+DEPEND="${PYTHON_DEPS}"
+REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 src_install() {
-	distutils_src_install
+	distutils-r1_src_install
 }
 
