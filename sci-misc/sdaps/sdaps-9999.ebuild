@@ -1,10 +1,16 @@
-# Copyright 1999-2009 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-# $
-
 EAPI="5"
+PYTHON_COMPAT=( python2_7 ) #test pypy
+DISTUTILS_SINGLE_IMPL=1
 
-inherit eutils distutils
+inherit distutils-r1
+
+DESCRIPTION="Scripts for data acquisition with paper-based surveys"
+HOMEPAGE="http://sdaps.org/"
+LICENSE="GPL-3"
+
+SLOT="0"
+IUSE="latex debug"
+
 if [[ ${PV} == "9999" ]] ; then
 	inherit git-2
 	EGIT_REPO_URI="https://github.com/sdaps/sdaps.git"
@@ -14,30 +20,24 @@ else
 	KEYWORDS="~amd64 ~x86"
 fi
 
+DEPEND="${PYTHON_DEPS} dev-python/python-distutils-extra[${PYTHON_USEDEP}] 
+media-libs/tiff dev-python/pycairo[${PYTHON_USEDEP}]
+|| ( dev-python/pyPdf[${PYTHON_USEDEP}] app-text/pdftk[${PYTHON_USEDEP}] )"
+DEPEND="${DEPEND} dev-python/pdftools[${PYTHON_USEDEP}]"
 
-DESCRIPTION="Scripts for data acquisition with paper-based surveys"
-
-DEPEND="dev-python/python-distutils-extra media-libs/tiff dev-python/pycairo ||
-( dev-python/pyPdf app-text/pdftk )"
-RDEPEND="x11-libs/gtk+ dev-python/pygobject 
-|| ( dev-python/pillow dev-python/imaging )
-dev-python/reportlab media-gfx/zbar[python]"
+RDEPEND="${PYTHON_DEPS} x11-libs/gtk+ dev-python/pygobject[${PYTHON_USEDEP}]
+|| ( dev-python/pillow[${PYTHON_USEDEP}] dev-python/imaging[${PYTHON_USEDEP}] )
+dev-python/reportlab[${PYTHON_USEDEP}] media-gfx/zbar[python,${PYTHON_USEDEP}] 
+media-libs/opencv[python,${PYTHON_USEDEP}]"
 RDEPEND="${RDEPEND} latex? ( virtual/latex-base dev-texlive/texlive-latexextra
 dev-tex/pgf dev-tex/latex-beamer dev-texlive/texlive-science )"
-RDEPEND="${RDEPEND} debug? ( dev-python/python-poppler )"
-
-LICENSE="GPL-3"
-HOMEPAGE="http://sdaps.org/"
-
-SLOT="0"
-IUSE="latex debug"
-RESTRICT=""
+RDEPEND="${RDEPEND} debug? ( dev-python/python-poppler[${PYTHON_USEDEP}] )"
 
 src_compile() {
-	distutils_src_compile
+	distutils-r1_src_compile
 }
 
 src_install() {
-	distutils_src_install
+	distutils-r1_src_install
 }
 
