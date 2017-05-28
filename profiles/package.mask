@@ -1,4 +1,0 @@
-# Florian Rinke <sdaps@florianrinke.de> (24 March 2017)
-# these versions are quite really old
-# masked for removal in 60 days
-<=sci-misc/sdaps-1.1.10
