@@ -1,0 +1,5 @@
+# Florian Rinke <sdaps@florianrinke.de> (17 July 2017)
+# There's a new stable version 1.2.0
+# older versions are quite deprecated, recommendation used to be "take repo"
+# masked for removal in 60 days
+<=sci-misc/sdaps-1.2.0
